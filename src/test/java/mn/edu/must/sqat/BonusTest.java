@@ -67,4 +67,12 @@ class BonusTest {
     void p6_fiveStreak_meetsThreshold_score51to54() {
         assertEquals(8, DataFlowTargets.bonus(new int[] {1, 1, 1, 1, 1}, 5));
     }
+
+    // ---------- Part C: test added to kill mutant M2 (line 43: best = present) ----------
+
+    @Test
+    @DisplayName("K1 [1,1,1,0,1,1,1,1] thr=10 -> 0 : best@43 updated AFTER a break (present=7 != streak=4) -- kills M2")
+    void k1_bestUpdatedAfterBreak_presentDiffersFromStreak_killsM2() {
+        assertEquals(0, DataFlowTargets.bonus(new int[] {1, 1, 1, 0, 1, 1, 1, 1}, 10));
+    }
 }
